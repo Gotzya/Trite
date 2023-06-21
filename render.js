@@ -1,13 +1,5 @@
 let canvas, gl, width, height, defaultColor;
 
-/* 
-Dev notes:
-
-- be able to add custom shaders
-- add error messages 
-
-*/
-
 class Render {
     constructor(Givencanvas) {
         defaultColor = [0, 0, 0];

@@ -1,5 +1,13 @@
 let canvas, gl, width, height, defaultColor;
 
+/* 
+Dev notes:
+
+- be able to add custom shaders
+- add error messages 
+
+*/
+
 class Render {
     constructor(Givencanvas) {
         defaultColor = [0, 0, 0];
@@ -234,17 +242,19 @@ class Line {
         this.normalY = this.directionX / this.magnitude;
 
         this.halfWidth = width / 2;
+        this.halfHeight = height / 2;
         this.inverseWidth = 1 / this.halfWidth;
+        this.inverseHeight = 1 / this.halfHeight;
 
         // Calculate vertex positions
         this.point0X = (this.normalX * 0.5 + x1 - this.halfWidth) * this.inverseWidth;
-        this.point0Y = (this.normalY * 0.5 + y1 - this.halfWidth) * -this.inverseWidth;
+        this.point0Y = (this.normalY * 0.5 + y1 - this.halfHeight) * -this.inverseHeight;
         this.point1X = (this.normalX * 0.5 + x2 - this.halfWidth) * this.inverseWidth;
-        this.point1Y = (this.normalY * 0.5 + y2 - this.halfWidth) * -this.inverseWidth;
+        this.point1Y = (this.normalY * 0.5 + y2 - this.halfHeight) * -this.inverseHeight;
         this.point2X = (this.normalX * -0.5 + x1 - this.halfWidth) * this.inverseWidth;
-        this.point2Y = (this.normalY * -0.5 + y1 - this.halfWidth) * -this.inverseWidth;
+        this.point2Y = (this.normalY * -0.5 + y1 - this.halfHeight) * -this.inverseHeight;
         this.point3X = (this.normalX * -0.5 + x2 - this.halfWidth) * this.inverseWidth;
-        this.point3Y = (this.normalY * -0.5 + y2 - this.halfWidth) * -this.inverseWidth;
+        this.point3Y = (this.normalY * -0.5 + y2 - this.halfHeight) * -this.inverseHeight;
 
         // Assign vertex positions to the triangleVertices array directly
         this.triangleVertices = [
@@ -285,14 +295,14 @@ class Line {
         this.invWidth = 1 / this.halfWidth;
 
         // Calculate vertex positions
-        this.point0X = (this.normalX * this.lineWidth + this.x1 - this.halfWidth) * this.invWidth;
-        this.point0Y = (this.normalY * this.lineWidth + this.y1 - this.halfWidth) * -this.invWidth;
-        this.point1X = (this.normalX * this.lineWidth + this.x2 - this.halfWidth) * this.invWidth;
-        this.point1Y = (this.normalY * this.lineWidth + this.y2 - this.halfWidth) * -this.invWidth;
-        this.point2X = (this.normalX * -this.lineWidth + this.x1 - this.halfWidth) * this.invWidth;
-        this.point2Y = (this.normalY * -this.lineWidth + this.y1 - this.halfWidth) * -this.invWidth;
-        this.point3X = (this.normalX * -this.lineWidth + this.x2 - this.halfWidth) * this.invWidth;
-        this.point3Y = (this.normalY * -this.lineWidth + this.y2 - this.halfWidth) * -this.invWidth;
+        this.point0X = (this.normalX * this.lineWidth + this.x1 - this.halfWidth) * this.inverseWidth;
+        this.point0Y = (this.normalY * this.lineWidth + this.y1 - this.halfHeight) * -this.inverseHeight;
+        this.point1X = (this.normalX * this.lineWidth + this.x2 - this.halfWidth) * this.inverseWidth;
+        this.point1Y = (this.normalY * this.lineWidth + this.y2 - this.halfHeight) * -this.inverseHeight;
+        this.point2X = (this.normalX * -this.lineWidth + this.x1 - this.halfWidth) * this.inverseWidth;
+        this.point2Y = (this.normalY * -this.lineWidth + this.y1 - this.halfHeight) * -this.inverseHeight;
+        this.point3X = (this.normalX * -this.lineWidth + this.x2 - this.halfWidth) * this.inverseWidth;
+        this.point3Y = (this.normalY * -this.lineWidth + this.y2 - this.halfHeight) * -this.inverseHeight;
 
         // Assign vertex positions to the triangleVertices array directly
         this.triangleVertices = [
@@ -319,17 +329,19 @@ class Line {
         this.normalY = this.directionX / this.magnitude;
 
         this.halfWidth = width / 2;
-        this.invWidth = 1 / this.halfWidth;
+        this.halfHeight = height / 2;
+        this.inverseWidth = 1 / this.halfWidth;
+        this.inverseHeight = 1 / this.halfHeight;
 
         // Calculate vertex positions
-        this.point0X = (this.normalX * this.lineWidth + x1 - this.halfWidth) * this.invWidth;
-        this.point0Y = (this.normalY * this.lineWidth + y1 - this.halfWidth) * -this.invWidth;
-        this.point1X = (this.normalX * this.lineWidth + x2 - this.halfWidth) * this.invWidth;
-        this.point1Y = (this.normalY * this.lineWidth + y2 - this.halfWidth) * -this.invWidth;
-        this.point2X = (this.normalX * -this.lineWidth + x1 - this.halfWidth) * this.invWidth;
-        this.point2Y = (this.normalY * -this.lineWidth + y1 - this.halfWidth) * -this.invWidth;
-        this.point3X = (this.normalX * -this.lineWidth + x2 - this.halfWidth) * this.invWidth;
-        this.point3Y = (this.normalY * -this.lineWidth + y2 - this.halfWidth) * -this.invWidth;
+        this.point0X = (this.normalX * LineWidth + x1 - this.halfWidth) * this.inverseWidth;
+        this.point0Y = (this.normalY * LineWidth + y1 - this.halfHeight) * -this.inverseHeight;
+        this.point1X = (this.normalX * LineWidth + x2 - this.halfWidth) * this.inverseWidth;
+        this.point1Y = (this.normalY * LineWidth + y2 - this.halfHeight) * -this.inverseHeight;
+        this.point2X = (this.normalX * -LineWidth + x1 - this.halfWidth) * this.inverseWidth;
+        this.point2Y = (this.normalY * -LineWidth + y1 - this.halfHeight) * -this.inverseHeight;
+        this.point3X = (this.normalX * -LineWidth + x2 - this.halfWidth) * this.inverseWidth;
+        this.point3Y = (this.normalY * -LineWidth + y2 - this.halfHeight) * -this.inverseHeight;
 
         this.triangleVertices.push(
             this.point0X, this.point0Y, this.triangleColor.r, this.triangleColor.g, this.triangleColor.b,

@@ -1,25 +1,32 @@
-# Trite
+# ⚡Trite⚡
 
-A small and simple 2D graphics library. Supports all modern browsers and uses the HTML canvas to draw too. However, all rendering is done with WebGL. This github page is basicaly for storage so there is nothing on here to get this working.
+A small and simple 2D graphics library. Supports all modern browsers and uses the HTML canvas to draw. However, all rendering is done with WebGL. This GitHub page is basically for storage, so there is nothing on here to get this working. 🎨📦
 
 
 ## Features
 
-Primitives:
-- Circles
-- Triangles
-- Rectangles
-- Lines
+#### Primitives:
+- Circles 🟠
+- Triangles 🔺
+- Rectangles 🟦
+- Lines ➖
 
-Render Features:
-- Batching / Batched rendering
-- Reusable arrays
+#### Render Features:
+- Batching / Batched rendering 🎯
+- Reusable arrays 🔄
 
-## Running Tests
+## Installation
 
-If you somehow were able to install this library without any directions, first of all good job, secondly, I needed to host the module file on a localhost to get around a silly Chrome error, change as needed. This is a simple test that exersises all the features 
+I think this npm package works. My nuked projects folder says otherwise. GL 👍
 
-```js
+```bash
+  npm install @gotzya/trite
+```
+    
+## Running Tests ▶️
+
+If you somehow were able to install this library without any directions, first of all, good job! 👏 Secondly, I needed to host the module file on localhost to get around a silly Chrome error. Change as needed. This is a simple test that exercises all the features:
+```javascript
 import { Render, Triangle, Line, Circle, Rectangle } from "http://127.0.0.1:5500/WebGL/lib/render.js";
 
 let canvas = document.getElementById("canvas");
@@ -70,8 +77,8 @@ batchCircle.draw()
 
 ```
 
-## Documentation
+## Documentation 📖
 
 Does not exist. I have no clue how anybody has the will power to create documentation for larger code projects. Might make one later if I feel like it. In the mean while, use this link below to get to the download page of PixiJS instead which does have documenation and far more features; of course, disguised as my documentation.
 
-[[Documentation]](https://github.com/pixijs/pixijs/releases)
+[📚 [Documentation]](https://github.com/pixijs/pixijs/releases)

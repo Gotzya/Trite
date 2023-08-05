@@ -1,4 +1,4 @@
-# ⚡Trite⚡
+# ⚡ Trite ⚡
 
 A small and simple 2D graphics library. Supports all modern browsers and uses the HTML canvas to draw. However, all rendering is done with WebGL. This GitHub page is basically for storage, so there is nothing on here to get this working. 🎨📦
 
